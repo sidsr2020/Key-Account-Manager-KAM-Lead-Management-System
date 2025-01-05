@@ -3,7 +3,6 @@
 ## Project Overview
 This is a web-based lead management system designed for Udaan's B2B e-commerce platform to help Key Account Managers (KAMs) track their restaurant leads and interactions. The system provides a comprehensive solution for managing restaurant leads, contacts, and interactions through an intuitive interface.
 
-## Website Demonstration video link: https://drive.google.com/file/d/1QI08S_Pz5SYn8MmEXItpsGhhcIqAL-kH/view?usp=sharing
 ## Answering all the System Design & Data modelling questions and discussing edge cases here: https://docs.google.com/document/d/1BlgB665brv9whvJ-sxuEk_Br-uu2lC1Zm33eMSagQZg/edit?usp=sharing
 
 ## Features
