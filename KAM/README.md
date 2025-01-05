@@ -1,4 +1,4 @@
-# Lead Management System for Udaan's B2B Platform (Shatakshi Shukla)
+# Lead Management System for Udaan's B2B Platform (Siddhant Sarkar)
 
 ## Project Overview
 This is a web-based lead management system designed for Udaan's B2B e-commerce platform to help Key Account Managers (KAMs) track their restaurant leads and interactions. The system provides a comprehensive solution for managing restaurant leads, contacts, and interactions through an intuitive interface.
@@ -176,4 +176,4 @@ CREATE TABLE interactions (
 
 
 ## Contact
-For any inquiries, please contact [shatakshi1712@gmail.com](mailto:shatakshi1712@gmail.com).
+For any inquiries, please contact [sidsr2020@gmail.com](mailto:sidsr2020@gmail.com).
