@@ -101,7 +101,7 @@ CREATE TABLE interactions (
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/shatakshishukla17/KAM-Shatakshi-Shukla-Udaan.git
+   git clone https://github.com/sidsr2020/KAM.git
    cd lead-management-system
    ```
    OR
