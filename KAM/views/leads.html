@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads - Lead Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Lead Management System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/leads">Leads</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Lead List -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Leads</h5>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLeadModal">
+                            Add New Lead
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="leadsContainer">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Lead Modal -->
+    <div class="modal fade" id="addLeadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Lead</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="leadForm">
+                        <div class="mb-3">
+                            <label class="form-label">Restaurant Name</label>
+                            <input type="text" class="form-control" name="restaurant_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" name="address" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" name="contact_number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" name="status">
+                                <option value="New">New</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Assigned KAM</label>
+                            <input type="text" class="form-control" name="assigned_kam" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lead Details Modal -->
+    <div class="modal fade" id="leadDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lead Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="leadTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#details">Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#contacts">Contacts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#interactions">Interactions</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane fade show active" id="details">
+                            <!-- Lead details will be populated here -->
+                        </div>
+                        <div class="tab-pane fade" id="contacts">
+                            <button class="btn btn-primary mb-3" onclick="showAddContactForm()">Add Contact</button>
+                            <div id="contactsList">
+                                <!-- Contacts will be populated here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="interactions">
+                            <button class="btn btn-primary mb-3" onclick="showAddInteractionForm()">Add Interaction</button>
+                            <div id="interactionsList">
+                                <!-- Interactions will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div class="modal fade" id="addContactModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contactForm">
+                        <input type="hidden" name="lead_id">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Role</label>
+                            <select class="form-select" name="role">
+                                <option value="Owner">Owner</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Staff">Staff</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" name="phone_number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Interaction Modal -->
+    <div class="modal fade" id="addInteractionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Interaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="interactionForm">
+                        <input type="hidden" name="lead_id">
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" name="interaction_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Type</label>
+                            <select class="form-select" name="interaction_type">
+                                <option value="Call">Call</option>
+                                <option value="Visit">Visit</option>
+                                <option value="Order">Order</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Notes</label>
+                            <textarea class="form-control" name="notes" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" name="follow_up_required">
+                            <label class="form-check-label">Follow-up Required</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
